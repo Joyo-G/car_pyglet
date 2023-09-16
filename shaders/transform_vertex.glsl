@@ -1,12 +1,14 @@
 #version 330
 
 in vec3 position;
-uniform mat4 transform = mat4(1.0);
 in vec3 color;
+
+uniform mat4 u_transform = mat4(1.0);
 
 out vec3 fragColor;
 
-void main(){
+void main()
+{
     fragColor = color;
-    gl_Position = transform * vec4(position,1.0f);
+    gl_Position = u_transform * vec4(position, 1.0f);
 }
