@@ -1,10 +1,26 @@
 import pyglet
 import numpy as np
 import OpenGL.GL as GL
-from pipeline_factory import *
-#Traemos la función para crear el Pipeline
-from lectura_de_shaders import *
-#Traemos los vertex_source_code y fragment_source_code
+from pathlib import Path
+import os
+#####################################################
+#             IMPORTAR LOS SHADERS
+#####################################################
+path = Path(os.path.dirname(os.path.dirname(__file__)))
+with open(path / "shaders/basic_vertex.glsl") as v:
+    vertex_source_code = v.read()
+with open(path / "shaders/basic_fragment.glsl") as f:
+    fragment_source_code = f.read()
+
+#####################################################
+#             Creación de la clase Pipeline
+#####################################################
+class Pipeline(pyglet.graphics.shader.ShaderProgram):
+
+    def __init__(self,vertex_souce, fragment_source):
+        self.__vertex = pyglet.graphics.shader.Shader(vertex_souce,"vertex")
+        self.__fragment = pyglet.graphics.shader.Shader(fragment_source,"fragment")
+        super().__init__(self.__vertex,self.__fragment)
 
 #Creamos el pipeline
 pipeline = Pipeline(vertex_source_code, fragment_source_code)
