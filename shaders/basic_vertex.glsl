@@ -3,7 +3,7 @@
 in vec3 position;
 in vec3 color;
 
-out fragColor;
+out vec3 fragColor;
 
 void main(){
     fragColor = color;
