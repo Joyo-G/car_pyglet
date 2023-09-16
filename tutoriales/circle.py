@@ -25,6 +25,6 @@ if __name__ == "__main__":
     def on_draw():
         GL.glClearColor(0, 0, 0, 1.0) #color de fondo
         pipeline.use()
-        gpu_circle.draw()
+        gpu_circle.draw(GL.GL_TRIANGLES)
     pyglet.app.run()
 
