@@ -11,3 +11,9 @@ def translate(dx,dy,dz):
                      [0.0,1.0,0.0,dy],
                      [0.0,0.0,1.0,dz],
                      [0.0,0.0,0.0,1.0]], dtype = np.float32)
+
+def uniformScale(s_u):
+    return np.array([[s_u,0.0,0.0,0.0],
+                     [0.0,s_u,0.0,0.0],
+                     [0.0,0.0,s_u,0.0],
+                     [0.0,0.0,0.0,1.0]], dtype = np.float32)
