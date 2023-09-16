@@ -7,5 +7,6 @@ import pyglet
 window = pyglet.window.Window(600,600)
 @window.event 
 def on_draw():
+    #Esta función se ejecuta en ciclo
     pass
 pyglet.app.run()
