@@ -4,7 +4,7 @@ class Model:
     """
     This class is to controll all model data of shape.
     """
-    def __init__(self,):
+    def __init__(self):
         """
         Initializer a Model class with a position, index, color, and gpu data with None default value
         """
