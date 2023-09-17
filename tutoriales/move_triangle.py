@@ -44,7 +44,7 @@ class ModelController():
 
     def __init__(self):
         self.position = np.array([0,0,0],dtype=np.float32)
-        self.scale = 1
+        self.scale = np.array([1,1,1],dtype=np.float32)
         self.rotate = np.array([0,0,0],dtype=np.float32)
 class Triangle(Model):
 
@@ -82,7 +82,7 @@ class ModelTransform(ModelController):
         super().__init__()
     
     def getTransformation(self):
-        return translate(self.position[0],self.position[1],self.position[2]) @ uniformScale(self.scale)
+        return translate(self.position[0],self.position[1],self.position[2]) @ scale(self.scale[0],self.scale[1],self.scale[2]) @ rotateY(self.rotate[1]) @ rotateX(self.rotate[0]) @rotateZ(self.rotate[2])
 def translate(dx,dy,dz):
     return np.array([[1.0,0.0,0.0,dx],
                      [0.0,1.0,0.0,dy],
@@ -92,6 +92,35 @@ def uniformScale(s_u):
     return np.array([[s_u,0.0,0.0,0.0],
                      [0.0,s_u,0.0,0.0],
                      [0.0,0.0,s_u,0.0],
+                     [0.0,0.0,0.0,1.0]], dtype = np.float32)
+def rotateZ(theta):
+    sin_theta = np.sin(theta)
+    cos_theta = np.cos(theta)
+    return np.array([
+        [cos_theta,-sin_theta,0,0],
+        [sin_theta,cos_theta,0,0],
+        [0,0,1,0],
+        [0,0,0,1]], dtype = np.float32)
+def rotateX(theta):
+    sin_theta = np.sin(theta)
+    cos_theta = np.cos(theta)
+    return np.array([
+        [1,0,0,0],
+        [0,cos_theta,-sin_theta,0],
+        [0,sin_theta,cos_theta,0],
+        [0,0,0,1]], dtype = np.float32)
+def rotateY(theta):
+    sin_theta = np.sin(theta)
+    cos_theta = np.cos(theta)
+    return np.array([
+        [cos_theta,0,sin_theta,0],
+        [0,1,0,0],
+        [-sin_theta,0,cos_theta,0],
+        [0,0,0,1]], dtype = np.float32)
+def scale(s_x,s_y,s_z):
+    return np.array([[s_x,0.0,0.0,0.0],
+                     [0.0,s_y,0.0,0.0],
+                     [0.0,0.0,s_z,0.0],
                      [0.0,0.0,0.0,1.0]], dtype = np.float32)
 if __name__ == "__main__":
 
@@ -121,7 +150,14 @@ if __name__ == "__main__":
         if (pyglet.window.key.DOWN == symbol):
             triangle_controller.position[1]-=0.1
         if (pyglet.window.key.PLUS == symbol):
-            triangle_controller.scale+=0.1
+            triangle_controller.scale[0]+=0.1
+            triangle_controller.scale[1]+=0.1
         if (pyglet.window.key.MINUS == symbol):
-            triangle_controller.scale-=0.1
+            triangle_controller.scale[0]-=0.1
+            triangle_controller.scale[1]-=0.1
+        if pyglet.window.key.A == symbol:
+            triangle_controller.rotate[1]+=0.1
+        if pyglet.window.key.D == symbol:
+            triangle_controller.rotate[1]-=0.1
+
     pyglet.app.run()
