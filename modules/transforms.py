@@ -18,7 +18,7 @@ def uniformScale(s_u):
                      [0.0,0.0,s_u,0.0],
                      [0.0,0.0,0.0,1.0]], dtype = np.float32)
 
-def uniformScale(s_x,s_y,s_z):
+def scale(s_x,s_y,s_z):
     return np.array([[s_x,0.0,0.0,0.0],
                      [0.0,s_y,0.0,0.0],
                      [0.0,0.0,s_z,0.0],
