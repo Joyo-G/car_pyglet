@@ -17,31 +17,6 @@ class Triangle(Model):
                                 0.0, 1.0, 0.0,
                                 0.0, 0.0, 1.0],dtype=np.float32)
         self._index_data = np.array([0,1,2],dtype=np.int32)
-    
-    def setVertex(self,W,x,y,z):
-        """
-        Set the vertex W with values (x,y,z)
-        """
-        if W == "A":
-            self._position_data[:3] = [x,y,z]
-        elif W == "C":
-            self._position_data[3:6] = [x,y,z]
-        elif W == "B":
-            self._position_data[6:] = [x,y,z]
-        else:
-            raise Exception("W must be A, B or C")
-    def setColorVertex(self,W,r,g,b):
-        """
-        Set vertex W color with values (r,g,b)
-        """
-        if W == "A":
-            self._color_data[:3] = [r,g,b]
-        elif W == "C":
-            self._color_data[3:6] = [r,g,b]
-        elif W == "B":
-            self._color_data[6:] = [r,g,b]
-        else:
-            raise Exception("W must be A, B or C")
 
     
 
