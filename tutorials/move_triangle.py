@@ -6,6 +6,8 @@ import sys
 import time
 import numpy as np
 
+"""import Pipeline class"""
+from pipeline_factory import Pipeline
 WIDTH = 720
 HEIGHT = 480
 
@@ -15,17 +17,6 @@ with open(path / "shaders/transform_vertex.glsl") as v:
 with open(path / "shaders/basic_fragment.glsl") as f:
     fragment_source_code = f.read()
 
-class Pipeline(pyglet.graphics.shader.ShaderProgram):
-    def __init__(self,vertex_souce, fragment_source):
-        self.__vertex = pyglet.graphics.shader.Shader(vertex_souce,"vertex")
-        self.__fragment = pyglet.graphics.shader.Shader(fragment_source,"fragment")
-        super().__init__(self.__vertex,self.__fragment)
-
-    def set_uniform(self,uniform_name,value,type):
-        if self[uniform_name] is None:
-            raise Exception("Uniform value does not exist")
-        elif type == "matrix4":
-            self[uniform_name] = np.reshape(value,(16,1),"F")
 class Model:
     def __init__(self):
         self._position_data = None
@@ -77,47 +68,18 @@ class Triangle(Model):
         else:
             raise Exception("W must be A, B or C")
 class ModelTransform(ModelController):
-
     def __init__(self):
         super().__init__()
     
     def getTransformation(self):
-        return translate(self.position[0],self.position[1],self.position[2]) @ scale(self.scale[0],self.scale[1],self.scale[2]) @ rotateY(self.rotate[1]) @ rotateX(self.rotate[0]) @rotateZ(self.rotate[2])
+        return translate(self.position[0],self.position[1],self.position[2])
+
 def translate(dx,dy,dz):
     return np.array([[1.0,0.0,0.0,dx],
                      [0.0,1.0,0.0,dy],
                      [0.0,0.0,1.0,dz],
                      [0.0,0.0,0.0,1.0]], dtype = np.float32)
-def uniformScale(s_u):
-    return np.array([[s_u,0.0,0.0,0.0],
-                     [0.0,s_u,0.0,0.0],
-                     [0.0,0.0,s_u,0.0],
-                     [0.0,0.0,0.0,1.0]], dtype = np.float32)
-def rotateZ(theta):
-    sin_theta = np.sin(theta)
-    cos_theta = np.cos(theta)
-    return np.array([
-        [cos_theta,-sin_theta,0,0],
-        [sin_theta,cos_theta,0,0],
-        [0,0,1,0],
-        [0,0,0,1]], dtype = np.float32)
-def rotateX(theta):
-    sin_theta = np.sin(theta)
-    cos_theta = np.cos(theta)
-    return np.array([
-        [1,0,0,0],
-        [0,cos_theta,-sin_theta,0],
-        [0,sin_theta,cos_theta,0],
-        [0,0,0,1]], dtype = np.float32)
-def rotateY(theta):
-    sin_theta = np.sin(theta)
-    cos_theta = np.cos(theta)
-    return np.array([
-        [cos_theta,0,sin_theta,0],
-        [0,1,0,0],
-        [-sin_theta,0,cos_theta,0],
-        [0,0,0,1]], dtype = np.float32)
-def scale(s_x,s_y,s_z):
+
     return np.array([[s_x,0.0,0.0,0.0],
                      [0.0,s_y,0.0,0.0],
                      [0.0,0.0,s_z,0.0],
