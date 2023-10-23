@@ -1,6 +1,6 @@
 import numpy as np
 import pyglet
-from model import *
+from shapes.model import Model
 class Circle(Model):
     """ A circle with a N as amount of triangles and a radio.
     """

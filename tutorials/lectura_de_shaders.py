@@ -3,7 +3,7 @@ from pathlib import Path
 
 #__file__: Es la dirección del archivo actual
 # os.path.dirname(__file__): Nos dice la dirección de donde se encuentra el archivo 
-#                            (C:\Users\kickk\OneDrive\Documentos\GitHub\car_pyglet\tutoriales)
+#                            (C:\Users\kickk\OneDrive\Documentos\GitHub\car_pyglet\tutorials)
 # Path se usa para poder usar el / y la ruta del archivo al que nos queremos dirigir.
 # Ejemplo de uso:
 #  ruta_base = Path("/ruta/base")
