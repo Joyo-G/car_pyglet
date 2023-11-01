@@ -3,6 +3,8 @@ import OpenGL.GL as GL
 class Model:
     """
     This class is to controll all model data of shape.
+
+    :version 1.0
     """
     def __init__(self):
         """
