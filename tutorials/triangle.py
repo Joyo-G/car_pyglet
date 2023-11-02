@@ -3,6 +3,9 @@ import numpy as np
 import OpenGL.GL as GL
 from pathlib import Path
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from modules.scene_graph import SceneGraph
 #####################################################
 #             IMPORTAR LOS SHADERS
 #####################################################
@@ -41,6 +44,8 @@ if __name__ == "__main__":
     gpu_triangle = pipeline.vertex_list_indexed(len(position_data)//3,GL.GL_TRIANGLES,index_data)
     gpu_triangle.position[:] = position_data
     gpu_triangle.color[:] = color_data
+
+    
 
     @window.event
     def on_draw():
