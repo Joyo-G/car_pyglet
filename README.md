@@ -13,3 +13,4 @@ This is a example of a car made in OpenGL, using Pyglet.
       Your browser does not support the video tag.
     
 </video>
+[watch the video](https://github.com/Joyo-G/car_pyglet/blob/main/video.mp4)
