@@ -9,7 +9,7 @@ This is a example of a car made in OpenGL, using Pyglet.
 - gpu_name.draw(mode): This function is used to draw all data in gpu_name. The mode is the mode what we like to draw our primitive, usually GL.GL_TRIANGLES.
 
 <video width="320" height="240" controls>
-      <source src="/video.mp4" type="video/mp4">
+      <source src="video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     
 </video>
