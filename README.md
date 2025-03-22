@@ -17,4 +17,4 @@ e. After this, we must set position and color data, like this: "gpu_name.positio
       Your browser does not support the video tag.
     
 </video>
-[watch the video](https://github.com/Joyo-G/car_pyglet/blob/main/video.mp4)
+https://github.com/Joyo-G/car_pyglet/blob/main/video.mp4
