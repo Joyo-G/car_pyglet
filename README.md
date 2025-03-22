@@ -7,3 +7,9 @@ This is a example of a car made in OpenGL, using Pyglet.
 - pyglet.window.Window(): This function have many variables, this can be read in pyglet docs. This is used to create a window to project our primitives.
 - **pipeline**.vertex_list_indexed(len(position_data)//3 ,GL.GL_TRIANGLES, index_data): After we have the vertex (position) data, and the indices data from our primite, we have to load them in this function, the return is saved in some variable gpu_name. After this, we must set position and color data, like this: "gpu_name.position[:] = position_data" and "gpu_name.color[:] = color_data". 
 - gpu_name.draw(mode): This function is used to draw all data in gpu_name. The mode is the mode what we like to draw our primitive, usually GL.GL_TRIANGLES.
+
+<video width="320" height="240" controls>
+      <source src="/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    
+</video>
